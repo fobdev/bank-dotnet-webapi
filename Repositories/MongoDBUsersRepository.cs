@@ -48,6 +48,26 @@ namespace Bank.Repositories
             var update = Builders<User>.Update.Set("balance", newBalance);
             usersCollection.UpdateOne(filter, update);
         }
+
+        public bool ExistsEmail(string email)
+        {
+            var filter = Builders<User>.Filter.Eq(user => user.email, email);
+            var userById = usersCollection.Find(filter).SingleOrDefault();
+
+            if (userById is not null) return true;
+
+            return false;
+        }
+
+        public bool ExistsCPF(string cpf)
+        {
+            var filter = Builders<User>.Filter.Eq(user => user.cpf, cpf);
+            var userById = usersCollection.Find(filter).SingleOrDefault();
+
+            if (userById is not null) return true;
+
+            return false;
+        }
     }
 
 }

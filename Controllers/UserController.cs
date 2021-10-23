@@ -52,6 +52,11 @@ namespace Bank.Controllers
             iterationCount: 99999,
             numBytesRequested: 256 / 8));
 
+            // check duplicates
+            if (_user_repository.ExistsCPF(userDto.cpf) || _user_repository.ExistsEmail(userDto.email))
+                return Forbid();
+
+            // user creation
             User user = new()
             {
                 id = Guid.NewGuid(),
