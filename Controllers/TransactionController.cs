@@ -40,6 +40,7 @@ namespace Bank.Controllers
             return Ok(transaction.AsTransactionDto());
         }
 
+        // [POST] endpoint: transactions/create
         [HttpPost("create")]
         public ActionResult MakeTransaction([FromBody] TransactionCreateDto transaction)
         {
