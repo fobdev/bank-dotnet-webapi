@@ -1,6 +1,7 @@
 # dotnet-webapi-bank
 This is a project made for a test related to WebAPIs.
 
+# usage
 ### get all users
 
     [GET] endpoint: users/
