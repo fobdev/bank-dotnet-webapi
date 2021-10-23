@@ -58,5 +58,18 @@ namespace Bank.Controllers
 
             return NoContent();
         }
+
+        // [POST] endpoint: transactions/undotransaction/{id}
+        [HttpPost("undotransaction/{id:guid}")]
+        public ActionResult RevertTransaction(Guid id)
+        {
+            var existingTransaction = transaction_repository.GetTransactionById(id);
+            if (existingTransaction is null) return NotFound();
+
+            transaction_repository.RevertTransaction(id);
+
+            return NoContent();
+        }
+
     }
 }
