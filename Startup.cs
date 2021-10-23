@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bank.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,15 @@ namespace Bank
         {
 
             services.AddControllers();
+
+            /*
+                Dependency injection
+                IUserRepository -> InMemoryUserRepository
+                ITransactionRepository -> InMemoryTransactionRepository
+            */
+
+            services.AddSingleton<IUserRepository, InMemoryUserRepository>();
+            services.AddSingleton<ITransactionRepository, InMemoryTransactionRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bank", Version = "v1" });
