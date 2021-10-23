@@ -5,7 +5,7 @@ using Bank.Models;
 namespace Bank.Repositories
 {
 
-    public interface ITransactionsRepository
+    public interface ITransactionRepository
     {
         IEnumerable<Transaction> GetTransactions();
 

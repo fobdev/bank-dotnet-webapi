@@ -5,7 +5,7 @@ using Bank.Models;
 
 namespace Bank.Repositories
 {
-    public class InMemoryTransactionRepository : ITransactionsRepository
+    public class InMemoryTransactionRepository : ITransactionRepository
     {
 
         private readonly IUserRepository user_repository;
