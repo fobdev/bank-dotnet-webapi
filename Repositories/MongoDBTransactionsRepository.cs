@@ -57,12 +57,9 @@ namespace Bank.Repositories
             var userSender = _user_repository.GetUser(transaction.sender);
             var userReceiver = _user_repository.GetUser(transaction.receiver);
 
-            // action
-            var revertedSenderBalance = userSender.balance + transaction.amount;
-            var revertedReceiverBalance = userReceiver.balance - transaction.amount;
-
-            _user_repository.SetUserBalance(userSender, revertedSenderBalance);
-            _user_repository.SetUserBalance(userReceiver, revertedReceiverBalance);
+            // transaction operation
+            _user_repository.SetUserBalance(userSender, (userSender.balance + transaction.amount));
+            _user_repository.SetUserBalance(userReceiver, (userReceiver.balance - transaction.amount));
 
             Transaction newTransaction = new()
             {
