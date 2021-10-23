@@ -18,7 +18,7 @@ namespace Bank.Repositories
             {
                 id = Guid.NewGuid(),
                 name = "Pedro",
-                type = "common",
+                staff = false,
                 cpf = "12345678987",
                 email = "pedro@pedrodev.net",
                 password = "passwd123",
@@ -28,7 +28,7 @@ namespace Bank.Repositories
             {
                 id = Guid.NewGuid(),
                 name = "Lucas",
-                type = "common",
+                staff = false,
                 cpf = "98765432187",
                 email = "lucas@pedrodev.net",
                 password = "passwd999",
@@ -38,7 +38,7 @@ namespace Bank.Repositories
             {
                 id = Guid.NewGuid(),
                 name = "José",
-                type = "sales",
+                staff = true,
                 cpf = "65432198754",
                 email = "jose@pedrodev.net",
                 password = "passwd555",
@@ -58,9 +58,9 @@ namespace Bank.Repositories
         {
             users.Add(user);
         }
-        public string GetUserType(Guid id)
+        public bool GetUserType(Guid id)
         {
-            return users.Where(user => user.id == id).SingleOrDefault().type;
+            return users.Where(user => user.id == id).SingleOrDefault().staff;
         }
         public double GetUserBalance(Guid id)
         {

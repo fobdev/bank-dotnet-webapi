@@ -11,7 +11,7 @@ namespace Bank
             {
                 id = user.id,
                 name = user.name,
-                type = user.type,
+                staff = user.staff,
                 balance = user.balance
             };
         }

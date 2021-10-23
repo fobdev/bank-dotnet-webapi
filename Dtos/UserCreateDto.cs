@@ -5,7 +5,7 @@ namespace Bank.Models
     public record UserCreateDto
     {
         [Required]
-        public string type { get; set; } // sales or common
+        public bool staff { get; set; } // sales or common
         [Required]
         public string name { get; init; }
         [Required]

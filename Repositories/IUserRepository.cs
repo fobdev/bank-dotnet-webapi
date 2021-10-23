@@ -10,7 +10,7 @@ namespace Bank.Repositories
         IEnumerable<User> GetUsers();
         void CreateUser(User user);
         double GetUserBalance(Guid id);
-        string GetUserType(Guid id);
+        bool GetUserType(Guid id);
         void SetUserBalance(User user, double newBalance);
     }
 }

@@ -50,7 +50,7 @@ namespace Bank.Controllers
             if (existingReceiver is null) return NotFound();
 
             // sales user type don't send money, only receive
-            if (existingSender.type == "sales") return Forbid();
+            if (existingSender.staff) return Forbid();
             if (existingSender.balance < transaction.amount) return Forbid();
 
             _transactions_repository.CreateTransaction(existingSender, existingReceiver, transaction.amount);

@@ -45,7 +45,7 @@ namespace Bank.Controllers
                 email = userDto.email,
                 cpf = userDto.cpf,
                 password = userDto.password,
-                type = userDto.type,
+                staff = userDto.staff,
                 balance = 0,
             };
 
