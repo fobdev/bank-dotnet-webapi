@@ -7,6 +7,8 @@ using Bank.Dtos;
 using Bank.Models;
 using Bank.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace Bank.Controllers
 {
@@ -38,13 +40,27 @@ namespace Bank.Controllers
         [HttpPost]
         public ActionResult<UserDto> CreateUser(UserCreateDto userDto)
         {
+            // password hashing
+            byte[] specialsugar = new byte[128 / 8];
+            using (var rngCsp = new RNGCryptoServiceProvider())
+            {
+                rngCsp.GetNonZeroBytes(specialsugar);
+            }
+
+            string hashedpwd = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            password: userDto.password,
+            salt: specialsugar,
+            prf: KeyDerivationPrf.HMACSHA256,
+            iterationCount: 100000,
+            numBytesRequested: 256 / 8));
+
             User user = new()
             {
                 id = Guid.NewGuid(),
                 name = userDto.name,
                 email = userDto.email,
                 cpf = userDto.cpf,
-                password = userDto.password,
+                password = hashedpwd,
                 staff = userDto.staff,
                 balance = 0,
             };
