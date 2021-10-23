@@ -7,7 +7,7 @@ using Bank.Repositories;
 namespace Banking.Repositories
 {
 
-    public class InMemUserRepository : IUserRepository
+    public class InMemoryUserRepository : IUserRepository
     {
         private readonly List<User> users = new()
         {
