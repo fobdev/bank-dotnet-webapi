@@ -27,9 +27,22 @@ namespace Bank.Repositories
             return transactions;
         }
 
-        public void MakeTransaction(User sender, User receiver, double amount)
+        public void CreateTransaction(User sender, User receiver, double amount)
         {
-            throw new NotImplementedException();
+            var newSenderBalance = sender.balance - amount;
+            var newReceiverBalance = receiver.balance + amount;
+
+            user_repository.SetUserBalance(user_repository.GetUser(sender.id), newSenderBalance);
+            user_repository.SetUserBalance(user_repository.GetUser(receiver.id), newReceiverBalance);
+
+            transactions.Add(new Transaction
+            {
+                id = Guid.NewGuid(),
+                amount = amount,
+                sender = sender.id,
+                receiver = receiver.id,
+                createdAt = DateTimeOffset.UtcNow
+            });
         }
 
         public void RevertTransaction(Guid id)
