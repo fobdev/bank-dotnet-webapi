@@ -41,7 +41,7 @@ namespace Bank.Controllers
 
         // [POST] endpoint: transactions/create
         [HttpPost("create")]
-        public ActionResult MakeTransaction([FromBody] TransactionCreateDto transaction)
+        public ActionResult CreateTransaction([FromBody] TransactionCreateDto transaction)
         {
             var existingSender = _users_repository.GetUser(transaction.sender);
             if (existingSender is null) return NotFound();
