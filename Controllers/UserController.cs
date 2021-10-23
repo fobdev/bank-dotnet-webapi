@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
-using System.Text.RegularExpressions;
 using Bank.Dtos;
 using Bank.Models;
 using Bank.Repositories;
@@ -53,8 +51,8 @@ namespace Bank.Controllers
             numBytesRequested: 256 / 8));
 
             // check duplicates
-            if (_user_repository.ExistsCPF(userDto.cpf) || _user_repository.ExistsEmail(userDto.email))
-                return StatusCode(403);
+            if (_user_repository.ExistsEmail(userDto.email) || _user_repository.ExistsCPF(userDto.cpf))
+                return Conflict("The Email or CPF already exists in the database.");
 
             // user creation
             User user = new()

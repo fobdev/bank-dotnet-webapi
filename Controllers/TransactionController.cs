@@ -50,8 +50,10 @@ namespace Bank.Controllers
             if (existingReceiver is null) return NotFound();
 
             // sales user type don't send money, only receive
-            if (existingSender.staff) return StatusCode(403);
-            if (existingSender.balance < transaction.amount) return StatusCode(403);
+            if (existingSender.staff)
+                return BadRequest("Staff users can only receive transactions.");
+            if (existingSender.balance < transaction.amount)
+                return BadRequest("The transaction amount is larger than the current sender balance.");
 
             _transactions_repository.CreateTransaction(existingSender, existingReceiver, transaction.amount);
 
