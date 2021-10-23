@@ -39,5 +39,23 @@ namespace Bank.Controllers
 
             return Ok(transaction.AsTransactionDto());
         }
+
+        [HttpPost("create")]
+        public ActionResult MakeTransaction([FromBody] TransactionCreateDto transaction)
+        {
+            var existingSender = user_repository.GetUser(transaction.sender);
+            if (existingSender is null) return NotFound();
+
+            var existingReceiver = user_repository.GetUser(transaction.receiver);
+            if (existingReceiver is null) return NotFound();
+
+            // sales user type don't send money, only receive
+            if (existingSender.type == "sales") return Forbid();
+            if (existingSender.balance < transaction.amount) return Forbid();
+
+            transaction_repository.CreateTransaction(existingSender, existingReceiver, transaction.amount);
+
+            return NoContent();
+        }
     }
 }
