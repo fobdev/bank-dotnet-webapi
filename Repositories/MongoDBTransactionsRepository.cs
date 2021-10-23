@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Bank.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Bank.Repositories
@@ -50,7 +51,29 @@ namespace Bank.Repositories
         }
         public void RevertTransaction(Guid id)
         {
-            throw new NotImplementedException();
+            // data fetching
+            var transaction = GetTransactionById(id);
+
+            var userSender = _user_repository.GetUser(transaction.sender);
+            var userReceiver = _user_repository.GetUser(transaction.receiver);
+
+            // action
+            var revertedSenderBalance = userSender.balance + transaction.amount;
+            var revertedReceiverBalance = userReceiver.balance - transaction.amount;
+
+            _user_repository.SetUserBalance(userSender, revertedSenderBalance);
+            _user_repository.SetUserBalance(userReceiver, revertedReceiverBalance);
+
+            Transaction newTransaction = new()
+            {
+                id = Guid.NewGuid(),
+                sender = transaction.receiver,
+                receiver = transaction.sender,
+                createdAt = DateTimeOffset.UtcNow,
+                amount = 0
+            };
+
+            transactionCollection.InsertOne(newTransaction);
         }
     }
 }
