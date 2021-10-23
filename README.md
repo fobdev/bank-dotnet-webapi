@@ -81,9 +81,9 @@ This is a project made for a test related to WebAPIs.
 ##### post model
 
     {
-      "sender": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "receiver": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "amount": 0.0
+      "sender": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Guid
+      "receiver": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Guid
+      "amount": 0.0 // double
     }
     
 ### undo transaction
