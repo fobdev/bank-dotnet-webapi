@@ -43,15 +43,13 @@ namespace Bank.Controllers
             // password hashing
             byte[] specialsugar = new byte[128 / 8];
             using (var rngCsp = new RNGCryptoServiceProvider())
-            {
                 rngCsp.GetNonZeroBytes(specialsugar);
-            }
 
             string hashedpwd = Convert.ToBase64String(KeyDerivation.Pbkdf2(
             password: userDto.password,
             salt: specialsugar,
             prf: KeyDerivationPrf.HMACSHA256,
-            iterationCount: 100000,
+            iterationCount: 99999,
             numBytesRequested: 256 / 8));
 
             User user = new()
