@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Banking.Models
+namespace Bank.Models
 {
     public record UserCreateDto
     {

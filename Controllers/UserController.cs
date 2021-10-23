@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using Bank.Dtos;
 using Bank.Models;
 using Bank.Repositories;
-using Banking.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bank.Controllers
