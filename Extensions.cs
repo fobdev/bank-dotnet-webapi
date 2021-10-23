@@ -15,5 +15,16 @@ namespace Bank
                 balance = user.balance
             };
         }
+        public static TransactionDto AsTransactionDto(this Transaction transaction)
+        {
+            return new TransactionDto
+            {
+                id = transaction.id,
+                amount = transaction.amount,
+                receiver = transaction.receiver,
+                sender = transaction.sender,
+                createdAt = transaction.createdAt
+            };
+        }
     }
 }
