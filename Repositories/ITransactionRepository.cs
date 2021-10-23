@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Bank.Models;
 
-namespace Banking.Repositories
+namespace Bank.Repositories
 {
 
     public interface ITransactionsRepository

@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bank.Models;
-using Bank.Repositories;
 
-namespace Banking.Repositories
+namespace Bank.Repositories
 {
 
     public class InMemoryUserRepository : IUserRepository
