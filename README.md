@@ -3,7 +3,7 @@
 This is a project made for a test related to WebAPIs.
 
 ## Main Architecture (ASP.NET MVC WebAPI)
-![](model.png)
+![](APIModel.png)
 
 # usage
 
