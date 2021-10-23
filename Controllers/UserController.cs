@@ -54,7 +54,7 @@ namespace Bank.Controllers
 
             // check duplicates
             if (_user_repository.ExistsCPF(userDto.cpf) || _user_repository.ExistsEmail(userDto.email))
-                return Forbid();
+                return StatusCode(403);
 
             // user creation
             User user = new()
