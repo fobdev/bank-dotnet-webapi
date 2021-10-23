@@ -44,7 +44,10 @@ namespace Bank.Repositories
         }
         public void SetUserBalance(User user, double newBalance)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(user => user.id, user.id);
+            var userById = usersCollection.Find(filter).SingleOrDefault();
+            var update = Builders<User>.Update.Set("balance", newBalance);
+            usersCollection.UpdateOne(filter, update);
         }
     }
 

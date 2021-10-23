@@ -22,13 +22,11 @@ namespace Bank.Repositories
         }
         public void CreateTransaction(User sender, User receiver, double amount)
         {
-            /*
             var newSenderBalance = sender.balance - amount;
             var newReceiverBalance = receiver.balance + amount;
 
             _user_repository.SetUserBalance(_user_repository.GetUser(sender.id), newSenderBalance);
             _user_repository.SetUserBalance(_user_repository.GetUser(receiver.id), newReceiverBalance);
-            */
 
             Transaction transaction = new()
             {
