@@ -65,7 +65,7 @@ namespace Bank.Controllers
                 cpf = userDto.cpf,
                 password = hashedpwd,
                 staff = userDto.staff,
-                balance = 0,
+                balance = 1000,
             };
 
             _user_repository.CreateUser(user);
