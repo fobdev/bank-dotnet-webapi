@@ -28,7 +28,7 @@ namespace Bank.Controllers
         }
 
         // [GET] endpoint: users/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public ActionResult<UserDto> GetUserById(Guid id)
         {
             var user = user_repository.GetUser(id);
