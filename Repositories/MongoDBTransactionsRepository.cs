@@ -41,11 +41,12 @@ namespace Bank.Repositories
         }
         public IEnumerable<Transaction> GetTransactions()
         {
-            throw new NotImplementedException();
+            return transactionCollection.Find(new BsonDocument()).ToList();
         }
         public Transaction GetTransactionById(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Transaction>.Filter.Eq(user => user.id, id);
+            return transactionCollection.Find(filter).SingleOrDefault();
         }
         public void RevertTransaction(Guid id)
         {
