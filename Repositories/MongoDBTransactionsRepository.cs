@@ -10,14 +10,36 @@ namespace Bank.Repositories
         private const string databaseName = "bank";
         private const string collectionName = "transactions";
         private readonly IMongoCollection<Transaction> transactionCollection;
-        public MongoDBTransactionsRepository(IMongoClient mongoClient)
+        private readonly IUserRepository _user_repository;
+
+        public MongoDBTransactionsRepository(IMongoClient mongoClient, IUserRepository user_repository)
         {
             IMongoDatabase database = mongoClient.GetDatabase(databaseName);
             transactionCollection = database.GetCollection<Transaction>(collectionName);
+
+            this._user_repository = user_repository;
+
         }
         public void CreateTransaction(User sender, User receiver, double amount)
         {
-            throw new NotImplementedException();
+            /*
+            var newSenderBalance = sender.balance - amount;
+            var newReceiverBalance = receiver.balance + amount;
+
+            _user_repository.SetUserBalance(_user_repository.GetUser(sender.id), newSenderBalance);
+            _user_repository.SetUserBalance(_user_repository.GetUser(receiver.id), newReceiverBalance);
+            */
+
+            Transaction transaction = new()
+            {
+                id = Guid.NewGuid(),
+                amount = amount,
+                sender = sender.id,
+                receiver = receiver.id,
+                createdAt = DateTimeOffset.UtcNow
+            };
+
+            transactionCollection.InsertOne(transaction);
         }
         public IEnumerable<Transaction> GetTransactions()
         {
