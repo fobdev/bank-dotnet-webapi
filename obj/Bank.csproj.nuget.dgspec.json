@@ -38,13 +38,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
+            "MongoDB.Driver": {
               "target": "Package",
-              "version": "[5.0.11, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "target": "Package",
-              "version": "[5.0.11, )"
+              "version": "[2.13.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
