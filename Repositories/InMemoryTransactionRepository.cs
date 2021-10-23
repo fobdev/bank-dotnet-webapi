@@ -47,7 +47,24 @@ namespace Bank.Repositories
 
         public void RevertTransaction(Guid id)
         {
-            throw new NotImplementedException();
+            var transaction = GetTransactionById(id);
+
+            var userSender = user_repository.GetUser(transaction.sender);
+            var userReceiver = user_repository.GetUser(transaction.receiver);
+
+            var revertedSenderBalance = userSender.balance + transaction.amount;
+            var revertedReceiverBalance = userReceiver.balance - transaction.amount;
+
+            user_repository.SetUserBalance(userSender, revertedSenderBalance);
+            user_repository.SetUserBalance(userReceiver, revertedReceiverBalance);
+
+            transactions.Add(new Transaction
+            {
+                id = Guid.NewGuid(),
+                sender = transaction.receiver,
+                receiver = transaction.sender,
+                amount = 0
+            });
         }
     }
 }
