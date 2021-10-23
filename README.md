@@ -1,7 +1,7 @@
 # dotnet-webapi-bank
 This is a project made for a test related to WebAPIs.
 
-##### get all users
+### get all users
 
     [GET] endpoint: users/
 
@@ -16,7 +16,7 @@ This is a project made for a test related to WebAPIs.
         }, ....
     ]
 
-##### get a user by id
+### get a user by id
 
     [GET] endpoint: users/{id}
     
@@ -29,7 +29,7 @@ This is a project made for a test related to WebAPIs.
       "balance": 0.0
     }
     
-##### create a user
+### create a user
 
      [POST] endpoint: users/
   
@@ -43,7 +43,7 @@ This is a project made for a test related to WebAPIs.
       "password": "string"
     }
 
-##### see all transactions
+### see all transactions
       
       [GET] endpoint: transactions/
 
@@ -58,7 +58,7 @@ This is a project made for a test related to WebAPIs.
         }, ...
       ]
       
-##### get transaction by id
+### get transaction by id
 
       [GET] endpoint: transactions/{id}
       
@@ -73,7 +73,7 @@ This is a project made for a test related to WebAPIs.
         }
     ]
     
-##### create transaction
+### create transaction
      
      [POST] endpoint: transactions/create
 
@@ -85,7 +85,7 @@ This is a project made for a test related to WebAPIs.
       "amount": 0.0
     }
     
-##### undo transaction
+### undo transaction
 
     [POST] endpoint: transactions/undotransaction/{id}
     
