@@ -45,8 +45,10 @@ namespace Bank
 
             services.AddControllers();
 
+            // Dependency Injection
             services.AddSingleton<IUserRepository, MongoDBUsersRepository>();
             services.AddSingleton<ITransactionRepository, MongoDBTransactionsRepository>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bank", Version = "v1" });
