@@ -5,7 +5,11 @@ using Bank.Models;
 
 namespace Bank.Repositories
 {
-
+    /*
+        ===================================================
+        local test / no database
+        ===================================================
+    */
     public class InMemoryUserRepository : IUserRepository
     {
         private readonly List<User> users = new()
