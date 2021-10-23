@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Bank.Controllers
 {
     [ApiController]
-    [Route("user")]
+    [Route("users")]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository user_repository;
@@ -20,6 +20,7 @@ namespace Bank.Controllers
         {
             this.user_repository = user_repository;
         }
+
         [HttpGet]
         public ActionResult<IEnumerable<UserDto>> GetUsers()
         {
@@ -35,6 +36,7 @@ namespace Bank.Controllers
             if (user is null) return NotFound();
             return Ok(user.AsUserDto());
         }
+        [HttpPost]
         public ActionResult<UserDto> CreateUser(UserCreateDto userDto)
         {
             List<User> userList = user_repository.GetUsers().ToList<User>();
