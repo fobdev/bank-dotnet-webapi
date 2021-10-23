@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bank.Repositories;
+using Bank.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Driver;
 
 namespace Bank
 {
@@ -28,16 +33,20 @@ namespace Bank
         public void ConfigureServices(IServiceCollection services)
         {
 
+            // serialize Guid and DateTimeOffset
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+            BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+
+            services.AddSingleton<IMongoClient>(serviceProvider =>
+            {
+                var settings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                return new MongoClient(settings.ConnectionString);
+            });
+
             services.AddControllers();
 
-            /*
-                Dependency injection
-                IUserRepository -> InMemoryUserRepository
-                ITransactionRepository -> InMemoryTransactionRepository
-            */
-
-            services.AddSingleton<IUserRepository, InMemoryUserRepository>();
-            services.AddSingleton<ITransactionRepository, InMemoryTransactionRepository>();
+            services.AddSingleton<IUserRepository, MongoDBUsersRepository>();
+            services.AddSingleton<ITransactionRepository, MongoDBTransactionsRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bank", Version = "v1" });
