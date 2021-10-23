@@ -52,9 +52,8 @@ namespace Bank.Repositories
 
         public void CreateUser(User user)
         {
-            throw new NotImplementedException();
+            users.Add(user);
         }
-
         public double GetUserBalance(Guid id)
         {
             throw new NotImplementedException();
@@ -69,5 +68,6 @@ namespace Bank.Repositories
         {
             throw new NotImplementedException();
         }
+
     }
 }
