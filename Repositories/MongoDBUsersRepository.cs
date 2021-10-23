@@ -11,7 +11,6 @@ namespace Bank.Repositories
         private const string databaseName = "bank";
         private const string collectionName = "users";
         private readonly IMongoCollection<User> usersCollection;
-        private readonly FilterDefinitionBuilder<User> filterBuilder = Builders<User>.Filter;
         public MongoDBUsersRepository(IMongoClient mongoClient)
         {
             IMongoDatabase database = mongoClient.GetDatabase(databaseName);
@@ -27,24 +26,24 @@ namespace Bank.Repositories
         }
         public User GetUser(Guid id)
         {
-            var filter = filterBuilder.Eq(user => user.id, id);
+            var filter = Builders<User>.Filter.Eq(user => user.id, id);
             return usersCollection.Find(filter).SingleOrDefault();
         }
         public double GetUserBalance(Guid id)
         {
-            var filter = filterBuilder.Eq(user => user.id, id);
+            var filter = Builders<User>.Filter.Eq(user => user.id, id);
             var userById = usersCollection.Find(filter).SingleOrDefault();
             return userById.balance;
         }
-        public string GetUserType(Guid id)
+        public bool GetUserType(Guid id)
         {
-            var filter = filterBuilder.Eq(user => user.id, id);
+            var filter = Builders<User>.Filter.Eq(user => user.id, id);
             var userById = usersCollection.Find(filter).SingleOrDefault();
-            return userById.type;
+            return userById.staff;
         }
         public void SetUserBalance(User user, double newBalance)
         {
-            var filter = filterBuilder.Eq(user => user.id, user.id);
+            var filter = Builders<User>.Filter.Eq(user => user.id, user.id);
             var userById = usersCollection.Find(filter).SingleOrDefault();
             var update = Builders<User>.Update.Set("balance", newBalance);
             usersCollection.UpdateOne(filter, update);
