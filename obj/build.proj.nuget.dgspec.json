@@ -1,0 +1,48 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/pedro/Documents/Projects/Bank/build.proj": {}
+  },
+  "projects": {
+    "/home/pedro/Documents/Projects/Bank/build.proj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/pedro/Documents/Projects/Bank/build.proj",
+        "projectName": "build",
+        "projectPath": "/home/pedro/Documents/Projects/Bank/build.proj",
+        "packagesPath": "/home/pedro/.nuget/packages/",
+        "outputPath": "/home/pedro/Documents/Projects/Bank/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/pedro/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net45"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net45": {
+            "targetAlias": "net45",
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net45": {
+          "targetAlias": "net45",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.205/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
