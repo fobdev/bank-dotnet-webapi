@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bank.Models;
-
 namespace Bank.Repositories
 {
     /*
@@ -71,5 +70,14 @@ namespace Bank.Repositories
             user.balance = newBalance;
         }
 
+        public bool ExistsEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExistsCPF(string cpf)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
