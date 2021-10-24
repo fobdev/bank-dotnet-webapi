@@ -1,5 +1,6 @@
 using System;
 using Bank.Api.Controllers;
+using Bank.Api.Dtos;
 using Bank.Api.Models;
 using Bank.Api.Repositories;
 using FluentAssertions;
@@ -70,6 +71,31 @@ namespace Bank.UnitTests
             options => options.ComparingByMembers<User>().ExcludingMissingMembers());
         }
 
+        [Fact]
+        public void CreateUser_WithUserToCreate_ShouldReturnCreatedUser()
+        {
+            // Arrange
+            var userToCreate = new UserCreateDto()
+            {
+                name = Guid.NewGuid().ToString(),
+                cpf = Guid.NewGuid().ToString(),
+                email = Guid.NewGuid().ToString(),
+                password = Guid.NewGuid().ToString(),
+                staff = false,
+            };
+
+            var controller = new UserController(userRepositoryStub.Object);
+
+            // Act
+            var result = controller.CreateUser(userToCreate);
+
+            // Assert
+            var createdUser = (result.Result as CreatedAtActionResult).Value as UserDto;
+            userToCreate.Should().BeEquivalentTo(
+                createdUser,
+                options => options.ComparingByMembers<UserDto>().ExcludingMissingMembers()
+            );
+        }
         private User CreateRandomUser()
         {
             return new()
