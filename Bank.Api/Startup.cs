@@ -37,11 +37,18 @@ namespace Bank.Api
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
             BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
 
+            // MongoDb connection configuration            
+            var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
             services.AddSingleton<IMongoClient>(serviceProvider =>
             {
-                var settings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-                return new MongoClient(settings.ConnectionString);
+                return new MongoClient(mongoDbSettings.ConnectionString);
             });
+
+            // Checks if the database is up with 3 seconds timeout
+            services.AddHealthChecks()
+                .AddMongoDb(mongoDbSettings.ConnectionString,
+                            name: "MongoDb",
+                            timeout: TimeSpan.FromSeconds(3));
 
             services.AddControllers();
 
@@ -62,10 +69,9 @@ namespace Bank.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
+                app.UseHttpsRedirection();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bank v1"));
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -74,6 +80,7 @@ namespace Bank.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/hstatus");
             });
         }
     }
