@@ -1,4 +1,4 @@
-# dotnet-webapi-bank
+# bank-dotnet-webapi
 
 This is a project made for a test related to WebAPIs.
 
