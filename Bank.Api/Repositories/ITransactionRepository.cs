@@ -9,7 +9,7 @@ namespace Bank.Api.Repositories
     {
         IEnumerable<Transaction> GetTransactions();
         Transaction GetTransactionById(Guid id);
-        void CreateTransaction(User sender, User receiver, double amount);
+        void CreateTransaction(Transaction transaction);
         void RevertTransaction(Guid id);
     }
 }

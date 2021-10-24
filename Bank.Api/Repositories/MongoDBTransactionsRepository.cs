@@ -21,22 +21,13 @@ namespace Bank.Api.Repositories
             this._user_repository = user_repository;
 
         }
-        public void CreateTransaction(User sender, User receiver, double amount)
+        public void CreateTransaction(Transaction transaction)
         {
-            var newSenderBalance = sender.balance - amount;
-            var newReceiverBalance = receiver.balance + amount;
+            User sender = _user_repository.GetUserById(transaction.sender);
+            User receiver = _user_repository.GetUserById(transaction.receiver);
 
-            _user_repository.SetUserBalance(_user_repository.GetUserById(sender.id), newSenderBalance);
-            _user_repository.SetUserBalance(_user_repository.GetUserById(receiver.id), newReceiverBalance);
-
-            Transaction transaction = new()
-            {
-                id = Guid.NewGuid(),
-                amount = amount,
-                sender = sender.id,
-                receiver = receiver.id,
-                createdAt = DateTimeOffset.UtcNow
-            };
+            _user_repository.SetUserBalance(sender, sender.balance - transaction.amount);
+            _user_repository.SetUserBalance(receiver, receiver.balance + transaction.amount);
 
             transactionCollection.InsertOne(transaction);
         }

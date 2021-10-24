@@ -41,25 +41,34 @@ namespace Bank.Api.Controllers
 
         // [POST] endpoint: transactions/create
         [HttpPost("create")]
-        public ActionResult CreateTransaction([FromBody] TransactionCreateDto transaction)
+        public ActionResult CreateTransaction([FromBody] TransactionCreateDto transactionDto)
         {
-            var existingSender = _users_repository.GetUserById(transaction.sender);
+            var existingSender = _users_repository.GetUserById(transactionDto.sender);
             if (existingSender is null) return NotFound();
 
-            var existingReceiver = _users_repository.GetUserById(transaction.receiver);
+            var existingReceiver = _users_repository.GetUserById(transactionDto.receiver);
             if (existingReceiver is null) return NotFound();
 
-            // logic check
+            // check conflicts
             if (existingSender.staff)
                 return BadRequest("Staff users can only receive transactions.");
-            if (existingSender.balance < transaction.amount)
+            if (existingSender.balance < transactionDto.amount)
                 return BadRequest("The transaction amount is larger than the current sender balance.");
-            if (transaction.amount <= 0)
+            if (transactionDto.amount <= 0)
                 return BadRequest("Please input a valid transaction number.");
 
-            _transactions_repository.CreateTransaction(existingSender, existingReceiver, transaction.amount);
+            Transaction transaction = new()
+            {
+                id = Guid.NewGuid(),
+                amount = transactionDto.amount,
+                sender = transactionDto.sender,
+                receiver = transactionDto.receiver,
+                createdAt = DateTimeOffset.UtcNow
+            };
 
-            return NoContent();
+            _transactions_repository.CreateTransaction(transaction);
+
+            return CreatedAtAction(nameof(GetTransactionById), new { id = transaction.id }, transaction.AsTransactionDto());
         }
 
         // [POST] endpoint: transactions/undotransaction/{id}
