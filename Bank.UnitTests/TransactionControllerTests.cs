@@ -94,6 +94,23 @@ namespace Banking.UnitTests
                 options => options.ComparingByMembers<TransactionDto>().ExcludingMissingMembers()
             );
         }
+        [Fact]
+        public void RevertTransaction_WhenTransactionExists_ShouldReturnNoContent()
+        {
+            // Arrange
+            var newTransactionToCreate = CreateRandomTransaction();
+
+            transactionRepositoryStub.Setup(repo => repo.GetTransactionById(It.IsAny<Guid>()))
+                        .Returns(newTransactionToCreate);
+
+            var controller = new TransactionController(transactionRepositoryStub.Object, userRepositoryStub.Object);
+
+            // Act
+            var result = controller.RevertTransaction(newTransactionToCreate.id);
+
+            // Assert
+            result.Should().BeOfType<NoContentResult>();
+        }
 
         private Transaction CreateRandomTransaction()
         {
