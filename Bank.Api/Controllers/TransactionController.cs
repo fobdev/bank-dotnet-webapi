@@ -23,10 +23,10 @@ namespace Bank.Api.Controllers
 
         // [GET] endpoint: transactions/
         [HttpGet]
-        public ActionResult<IEnumerable<TransactionDto>> GetAllTransactions()
+        public IEnumerable<TransactionDto> GetAllTransactions()
         {
             var transactions = _transactions_repository.GetTransactions().Select(item => item.AsTransactionDto());
-            return Ok(transactions);
+            return transactions;
         }
 
         // [GET] endpoint: transactions/{id}

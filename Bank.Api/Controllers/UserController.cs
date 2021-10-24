@@ -21,10 +21,12 @@ namespace Bank.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<UserDto>> GetUsers()
+        public IEnumerable<UserDto> GetUsers()
         {
-            var users = _user_repository.GetUsers().Select(user => user.AsUserDto());
-            return Ok(users);
+            var users = _user_repository.GetUsers()
+                    .Select(user => user.AsUserDto());
+
+            return users;
         }
 
         // [GET] endpoint: users/{id}
