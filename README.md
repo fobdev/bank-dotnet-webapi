@@ -19,6 +19,7 @@ docker network create bankapi-fobenga ; docker run -d --rm --name mongo -p 27017
 ```console
 docker stop mongo ; docker network rm bankapi-fobenga
 ```
+- Link to the [Public repository of the container](https://hub.docker.com/r/fobenga/bank)
 
 
 # Local Build Instructions
