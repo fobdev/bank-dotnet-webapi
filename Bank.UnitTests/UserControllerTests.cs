@@ -91,6 +91,7 @@ namespace Bank.UnitTests
 
             // Assert
             var createdUser = (result.Result as CreatedAtActionResult).Value as UserDto;
+            createdUser.id.Should().NotBeEmpty();
             userToCreate.Should().BeEquivalentTo(
                 createdUser,
                 options => options.ComparingByMembers<UserDto>().ExcludingMissingMembers()
