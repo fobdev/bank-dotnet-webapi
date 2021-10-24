@@ -24,15 +24,16 @@ docker stop mongo ; docker network rm bankapi-fobenga
 
 # Local Build Instructions
  - install [.NET Core 5 Runtime and SDK](https://dotnet.microsoft.com/download).
- - run [mongodb](https://www.mongodb.com/) in Docker, using the command line below:
+ - install [Visual Studio Code](https://code.visualstudio.com/) (.vscode file already configured to build from TEST and DEV envs).
+ - install the [MongoDB VS Code Extension](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode).
+ - run ```dotnet restore```via the command line, to restore all NuGet Packages
+ - **Ctrl+Shift+B** in VS Code to build the project.
+ - run [mongodb](https://hub.docker.com/_/mongo) in Docker, using the command line below:
  ```console
 docker network create bankapi-fobenga ; docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=fobenga123 --network=bankapi-fobenga mongo
 ```
- - install [Visual Studio Code](https://code.visualstudio.com/) (.vscode file already configured to build from TEST and DEV envs).
- - install the [MongoDB VS Code Extension](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode).
- - **Ctrl+Shift+B** in VS Code to build the project and install Nuget packages.
- - if something else is needed, run ```dotnet restore``` via command line in the root directory.
  - **F5** to run in Debug mode.
+ 
 # Healthcheck Endpoints:
 - Database Integrity (check if the HTTP requests are available): ```http://localhost:8080/status/ready```
 - Server Integrity (check if the server is online): ```http://localhost:8080/status/live```
