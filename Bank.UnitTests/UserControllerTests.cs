@@ -36,7 +36,7 @@ namespace Bank.UnitTests
         public void GetUserById_WhenExists_ShouldReturnExpectedUser()
         {
             // Arrange
-            var expectedItem = CreateRandomUser();
+            User expectedItem = CreateRandomUser();
 
             userRepositoryStub.Setup(repo => repo.GetUserById(It.IsAny<Guid>()))
                 .Returns(expectedItem);
