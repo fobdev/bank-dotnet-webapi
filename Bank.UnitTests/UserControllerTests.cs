@@ -53,6 +53,24 @@ namespace Bank.UnitTests
             options => options.ComparingByMembers<UserDto>());
         }
 
+        [Fact]
+        public void GetUsers_WhenExists_ShouldReturnAllUsers()
+        {
+            // Arrange
+            var expectedUsers = new[] { CreateRandomUser(), CreateRandomUser(), CreateRandomUser() };
+            userRepositoryStub.Setup(repo => repo.GetUsers())
+                .Returns(expectedUsers);
+
+            var controller = new UserController(userRepositoryStub.Object);
+
+            // Act
+            var result = controller.GetUsers();
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedUsers,
+            options => options.ComparingByMembers<UserDto>());
+        }
+
         private User CreateRandomUser()
         {
             return new()
