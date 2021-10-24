@@ -39,3 +39,6 @@
 /home/pedro/Documents/Projects/Bank/Bank.Api/obj/Debug/net5.0/ref/Bank.Api.dll
 /home/pedro/Documents/Projects/Bank/Bank.Api/obj/Debug/net5.0/Bank.Api.pdb
 /home/pedro/Documents/Projects/Bank/Bank.Api/obj/Debug/net5.0/Bank.Api.genruntimeconfig.cache
+/home/pedro/Documents/Projects/Bank/Bank.Api/bin/Debug/net5.0/HealthChecks.MongoDb.dll
+/home/pedro/Documents/Projects/Bank/Bank.Api/bin/Debug/net5.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll
+/home/pedro/Documents/Projects/Bank/Bank.Api/bin/Debug/net5.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
