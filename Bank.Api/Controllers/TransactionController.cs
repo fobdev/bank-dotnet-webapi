@@ -36,7 +36,7 @@ namespace Bank.Api.Controllers
             var transaction = _transactions_repository.GetTransactionById(id);
             if (transaction is null) return NotFound();
 
-            return Ok(transaction.AsTransactionDto());
+            return transaction.AsTransactionDto();
         }
 
         // [POST] endpoint: transactions/create

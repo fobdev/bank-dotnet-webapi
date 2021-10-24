@@ -34,7 +34,7 @@ namespace Bank.Api.Controllers
             var user = _user_repository.GetUserById(id);
             if (user is null) return NotFound();
 
-            return Ok(user.AsUserDto());
+            return user.AsUserDto();
         }
         [HttpPost]
         public ActionResult<UserDto> CreateUser(UserCreateDto userDto)
