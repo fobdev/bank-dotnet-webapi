@@ -31,11 +31,11 @@ docker network create bankapi-fobenga && docker run -d --rm --name mongo -p 2701
 
 # HTTP Endpoints:
 
-### get all users
+## Get all users
 
     [GET] endpoint: users/
 
-##### example response
+Example response:
 
 ```json
     [
@@ -50,11 +50,11 @@ docker network create bankapi-fobenga && docker run -d --rm --name mongo -p 2701
 ```md
 "staff" = true: staff user / false: common user
 ```
-### get a user by id
+## Get user by Id
 
     [GET] endpoint: users/{id}
 
-##### example response
+Example response:
 ```json
     {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -66,11 +66,11 @@ docker network create bankapi-fobenga && docker run -d --rm --name mongo -p 2701
 ```md
 "staff" = true: staff user / false: common user
 ```
-### create a user
+## Create User
 
      [POST] endpoint: users/
 
-##### post model
+Post model:
 ```json
     {
       "staff": false,
@@ -86,11 +86,11 @@ docker network create bankapi-fobenga && docker run -d --rm --name mongo -p 2701
 "email" = string pattern: aaa@aaa.aaa
 ```
 
-### see all transactions
+## See All Transactions
 
       [GET] endpoint: transactions/
 
-##### example response
+Example response:
 ```json
       [
         {
@@ -103,28 +103,28 @@ docker network create bankapi-fobenga && docker run -d --rm --name mongo -p 2701
       ]
 ```
 
-### get transaction by id
+## Get Transaction By Id
 
       [GET] endpoint: transactions/{id}
 
 
-##### example response
+Example response:
 ```json
-     [
-        {
-          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "sender": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "receiver": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "createdAt": "2021-10-23T01:54:07.493Z",
-          "amount": 0.0
-        }
-    ]
+[
+   {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "sender": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "receiver": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "createdAt": "2021-10-23T01:54:07.493Z",
+      "amount": 0.0
+   }
+]
 ```
-### create transaction
+## Create Transaction
 
      [POST] endpoint: transactions/create
 
-##### post model
+Post model:
 ```json
     {
       "sender": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -138,8 +138,8 @@ docker network create bankapi-fobenga && docker run -d --rm --name mongo -p 2701
 "amount" = amount of money (in double)
 ```
 
-### undo transaction
+## Undo Transaction
 
     [POST] endpoint: transactions/undotransaction/{id}
 
-##### no response
+No response.
