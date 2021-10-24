@@ -55,13 +55,13 @@ namespace Bank.Api.Repositories
             Transaction newTransaction = new()
             {
                 id = Guid.NewGuid(),
-                sender = transaction.receiver,
-                receiver = transaction.sender,
-                createdAt = DateTimeOffset.UtcNow,
-                amount = 0
-            };
-
-            transactionCollection.InsertOne(newTransaction);
+        public bool CheckUserIsStaff(Guid id)
+        {
+            return _user_repository.GetUserById(id).staff;
+        }
+        public bool CheckTransactionSenderBalance(Guid senderId, double transactionAmount)
+        {
+            return _user_repository.GetUserById(senderId).balance < transactionAmount;
         }
     }
 }
