@@ -42,7 +42,8 @@ docker network create bankapi-fobenga ; docker run -d --rm --name mongo -p 27017
 
 ## [GET] Get all users
 
-    [GET] endpoint: http://localhost:8080/users/
+    Docker: [GET] endpoint: http://localhost:8080/users/
+    Local:  [GET] endpoint: https://localhost:5001/users/
 
 Example response:
 
@@ -61,7 +62,8 @@ Example response:
 ```
 ## [GET] Get user by Id
 
-    [GET] endpoint: http://localhost:8080/users/{id}
+    Docker: [GET] endpoint: http://localhost:8080/users/{id}
+    Local:  [GET] endpoint: https://localhost:5001/users/{id}
 
 Example response:
 ```json
@@ -77,7 +79,8 @@ Example response:
 ```
 ## [POST] Create User
 
-     [POST] endpoint: http://localhost:8080/users/
+     Docker: [POST] endpoint: http://localhost:8080/users/
+     Local:  [POST] endpoint: https://localhost:5001/users/
 
 Post model:
 ```json
@@ -97,7 +100,8 @@ Post model:
 
 ## [GET] See All Transactions
 
-      [GET] endpoint: http://localhost:8080/transactions/
+      Docker: [GET] endpoint: http://localhost:8080/transactions/
+      Local:  [GET] endpoint: https://localhost:5001/transactions/
 
 Example response:
 ```json
@@ -114,7 +118,8 @@ Example response:
 
 ## [GET] Get Transaction By Id
 
-      [GET] endpoint: http://localhost:8080/transactions/{id}
+      Docker: [GET] endpoint: http://localhost:8080/transactions/{id}
+      Local:  [GET] endpoint: https://localhost:5001/transactions/{id}
 
 
 Example response:
@@ -131,7 +136,8 @@ Example response:
 ```
 ## [POST] Create Transaction
 
-     [POST] endpoint: http://localhost:8080/transactions/create
+     Docker: [POST] endpoint: http://localhost:8080/transactions/create
+     Local:  [POST] endpoint: https://localhost:5001/transactions/create
 
 Post model:
 ```json
@@ -149,6 +155,7 @@ Post model:
 
 ## [POST] Undo Transaction
 
-    [POST] endpoint: http://localhost:8080/transactions/undotransaction/{id}
+    Docker: [POST] endpoint: http://localhost:8080/transactions/undotransaction/{id}
+    Local:  [POST] endpoint: https://localhost:5001/transactions/undotransaction/{id}
 
 No response.
