@@ -13,18 +13,18 @@ namespace Banking.UnitTests
     public class TransactionControllerTests
     {
 
-        private readonly Mock<ITransactionRepository> transactionRepositoryStub = new();
-        private readonly Mock<IUserRepository> userRepositoryStub = new();
+        private readonly Mock<ITransactionRepository> transactionRepositoryMock = new();
+        private readonly Mock<IUserRepository> userRepositoryMock = new();
         private readonly Random randomNumber = new();
 
         [Fact]
         public void GetTransactionById_WhenTransactionNotExists_ShouldReturnNotFound()
         {
             // Arrange
-            transactionRepositoryStub.Setup(repo => repo.GetTransactionById(It.IsAny<Guid>()))
+            transactionRepositoryMock.Setup(repo => repo.GetTransactionById(It.IsAny<Guid>()))
                 .Returns((Transaction)null);
 
-            var controller = new TransactionController(transactionRepositoryStub.Object, userRepositoryStub.Object);
+            var controller = new TransactionController(transactionRepositoryMock.Object, userRepositoryMock.Object);
 
             // Act
             var result = controller.GetTransactionById(Guid.NewGuid());
@@ -39,10 +39,10 @@ namespace Banking.UnitTests
             // Arrange
             Transaction expectedItem = CreateRandomTransaction();
 
-            transactionRepositoryStub.Setup(repo => repo.GetTransactionById(It.IsAny<Guid>()))
+            transactionRepositoryMock.Setup(repo => repo.GetTransactionById(It.IsAny<Guid>()))
                 .Returns(expectedItem);
 
-            var controller = new TransactionController(transactionRepositoryStub.Object, userRepositoryStub.Object);
+            var controller = new TransactionController(transactionRepositoryMock.Object, userRepositoryMock.Object);
 
             // Act
             var result = controller.GetTransactionById(Guid.NewGuid());
@@ -58,10 +58,10 @@ namespace Banking.UnitTests
             // Arrange
             var expectedTransactions = new[] { CreateRandomTransaction(), CreateRandomTransaction(), CreateRandomTransaction() };
 
-            transactionRepositoryStub.Setup(repo => repo.GetTransactions())
+            transactionRepositoryMock.Setup(repo => repo.GetTransactions())
                 .Returns(expectedTransactions);
 
-            var controller = new TransactionController(transactionRepositoryStub.Object, userRepositoryStub.Object);
+            var controller = new TransactionController(transactionRepositoryMock.Object, userRepositoryMock.Object);
 
             // Act
             var result = controller.GetAllTransactions();
@@ -81,7 +81,7 @@ namespace Banking.UnitTests
                 sender = Guid.NewGuid(),
                 receiver = Guid.NewGuid(),
             };
-            var controller = new TransactionController(transactionRepositoryStub.Object, userRepositoryStub.Object);
+            var controller = new TransactionController(transactionRepositoryMock.Object, userRepositoryMock.Object);
 
             // Act
             var result = controller.CreateTransaction(transactionToCreate);
@@ -100,10 +100,10 @@ namespace Banking.UnitTests
             // Arrange
             var newTransactionToCreate = CreateRandomTransaction();
 
-            transactionRepositoryStub.Setup(repo => repo.GetTransactionById(It.IsAny<Guid>()))
+            transactionRepositoryMock.Setup(repo => repo.GetTransactionById(It.IsAny<Guid>()))
                         .Returns(newTransactionToCreate);
 
-            var controller = new TransactionController(transactionRepositoryStub.Object, userRepositoryStub.Object);
+            var controller = new TransactionController(transactionRepositoryMock.Object, userRepositoryMock.Object);
 
             // Act
             var result = controller.RevertTransaction(newTransactionToCreate.id);

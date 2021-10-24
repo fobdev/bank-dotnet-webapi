@@ -12,7 +12,7 @@ namespace Bank.UnitTests
 {
     public class UserControllerTests
     {
-        private readonly Mock<IUserRepository> userRepositoryStub = new();
+        private readonly Mock<IUserRepository> userRepositoryMock = new();
 
         private readonly Random randomNumber = new();
 
@@ -21,10 +21,10 @@ namespace Bank.UnitTests
         public void GetUserById_WhenUserNotExists_ShouldReturnNotFound()
         {
             // Arrange
-            userRepositoryStub.Setup(repo => repo.GetUserById(It.IsAny<Guid>()))
+            userRepositoryMock.Setup(repo => repo.GetUserById(It.IsAny<Guid>()))
                 .Returns((User)null);
 
-            var controller = new UserController(userRepositoryStub.Object);
+            var controller = new UserController(userRepositoryMock.Object);
 
             // Act
             var result = controller.GetUserById(Guid.NewGuid());
@@ -39,10 +39,10 @@ namespace Bank.UnitTests
             // Arrange
             User expectedItem = CreateRandomUser();
 
-            userRepositoryStub.Setup(repo => repo.GetUserById(It.IsAny<Guid>()))
+            userRepositoryMock.Setup(repo => repo.GetUserById(It.IsAny<Guid>()))
                 .Returns(expectedItem);
 
-            var controller = new UserController(userRepositoryStub.Object);
+            var controller = new UserController(userRepositoryMock.Object);
 
             // Act
             var result = controller.GetUserById(Guid.NewGuid());
@@ -58,10 +58,10 @@ namespace Bank.UnitTests
             // Arrange
             var expectedUsers = new[] { CreateRandomUser(), CreateRandomUser(), CreateRandomUser() };
 
-            userRepositoryStub.Setup(repo => repo.GetUsers())
+            userRepositoryMock.Setup(repo => repo.GetUsers())
                 .Returns(expectedUsers);
 
-            var controller = new UserController(userRepositoryStub.Object);
+            var controller = new UserController(userRepositoryMock.Object);
 
             // Act
             var result = controller.GetUsers();
@@ -84,7 +84,7 @@ namespace Bank.UnitTests
                 staff = false,
             };
 
-            var controller = new UserController(userRepositoryStub.Object);
+            var controller = new UserController(userRepositoryMock.Object);
 
             // Act
             var result = controller.CreateUser(userToCreate);
