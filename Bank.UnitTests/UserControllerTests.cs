@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 using Bank.Api;
+using System.Linq;
 
 namespace Bank.UnitTests
 {
@@ -58,6 +59,7 @@ namespace Bank.UnitTests
         {
             // Arrange
             var expectedUsers = new[] { CreateRandomUser(), CreateRandomUser(), CreateRandomUser() };
+
             userRepositoryStub.Setup(repo => repo.GetUsers())
                 .Returns(expectedUsers);
 
@@ -67,7 +69,7 @@ namespace Bank.UnitTests
             var result = controller.GetUsers();
 
             // Assert
-            result.Should().BeEquivalentTo(expectedUsers,
+            result.Should().BeEquivalentTo(expectedUsers.Select(users => users.AsUserDto()),
             options => options.ComparingByMembers<UserDto>());
         }
 
