@@ -14,11 +14,9 @@ namespace Bank.Api.Controllers
     public class TransactionController : ControllerBase
     {
         private readonly ITransactionRepository _transactions_repository;
-        private readonly IUserRepository _users_repository;
         public TransactionController(ITransactionRepository transactions_repository, IUserRepository users_repository)
         {
             this._transactions_repository = transactions_repository;
-            this._users_repository = users_repository;
         }
 
         // [GET] endpoint: transactions/
@@ -41,21 +39,17 @@ namespace Bank.Api.Controllers
 
         // [POST] endpoint: transactions/create
         [HttpPost("create")]
-        public ActionResult CreateTransaction([FromBody] TransactionCreateDto transactionDto)
+        public ActionResult<TransactionDto> CreateTransaction(TransactionCreateDto transactionDto)
         {
-            var existingSender = _users_repository.GetUserById(transactionDto.sender);
-            if (existingSender is null) return NotFound();
-
-            var existingReceiver = _users_repository.GetUserById(transactionDto.receiver);
-            if (existingReceiver is null) return NotFound();
-
             // check conflicts
-            if (existingSender.staff)
-                return BadRequest("Staff users can only receive transactions.");
-            if (existingSender.balance < transactionDto.amount)
-                return BadRequest("The transaction amount is larger than the current sender balance.");
+            if (transactionDto.sender == transactionDto.receiver)
+                return BadRequest("Transaction needs to be from two different users.");
             if (transactionDto.amount <= 0)
                 return BadRequest("Please input a valid transaction number.");
+            if (_transactions_repository.CheckUserIsStaff(transactionDto.sender))
+                return BadRequest("Staff members can only receive money.");
+            if (_transactions_repository.CheckTransactionSenderBalance(transactionDto.sender, transactionDto.amount))
+                return BadRequest("The transaction value must be smaller or equal to the user balance.");
 
             Transaction transaction = new()
             {
