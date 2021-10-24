@@ -53,7 +53,7 @@ namespace Bank.Api.Controllers
             iterationCount: 99999,
             numBytesRequested: 256 / 8));
 
-            // check duplicates
+            // check conflicts
             if (_user_repository.ExistsEmail(userDto.email) || _user_repository.ExistsCPF(userDto.cpf))
                 return Conflict("The Email or CPF already exists in the database.");
 
