@@ -54,6 +54,8 @@ namespace Bank.Api.Controllers
                 return BadRequest("Staff users can only receive transactions.");
             if (existingSender.balance < transaction.amount)
                 return BadRequest("The transaction amount is larger than the current sender balance.");
+            if (transaction.amount <= 0)
+                return BadRequest("Please input a valid transaction number.");
 
             _transactions_repository.CreateTransaction(existingSender, existingReceiver, transaction.amount);
 
