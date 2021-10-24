@@ -65,7 +65,7 @@ http:/localhost:8080/status/live
 ##### post model
 
     {
-      "staff": bool, // common user os sales user
+      "staff": bool, // false = common user | true = bank staff
       "name": "string",
       "cpf": "string", // format xxx.xxx.xxx-xx
       "email": "string", // format xxx@xxx.xxx
