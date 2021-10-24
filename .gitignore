@@ -1,3 +1,4 @@
-Bank.Api/obj/Debug
-Bank.Api/bin/Debug
-Bank.UnitTests/bin/Debug
+Bank.Api/bin/*
+Bank.Api/obj/*
+Bank.UnitTests/bin/*
+Bank.UnitTests/obj/*
