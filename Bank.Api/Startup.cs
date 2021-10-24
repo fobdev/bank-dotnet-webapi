@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Bank.Api.Repositories;
 using Bank.Api.Settings;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +49,8 @@ namespace Bank.Api
             services.AddHealthChecks()
                 .AddMongoDb(mongoDbSettings.ConnectionString,
                             name: "MongoDb",
-                            timeout: TimeSpan.FromSeconds(3));
+                            timeout: TimeSpan.FromSeconds(3),
+                            tags: new[] { "ready" });
 
             services.AddControllers();
 
@@ -80,7 +82,21 @@ namespace Bank.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHealthChecks("/hstatus");
+
+                /*
+                    Checks if the API is ready to receive and send requests
+                    (if the database service is running and properly credentiated)
+                */
+                endpoints.MapHealthChecks("/status/ready", new HealthCheckOptions
+                {
+                    Predicate = (check) => check.Tags.Contains("ready")
+                });
+
+                // checks if the API is alive
+                endpoints.MapHealthChecks("/status/live", new HealthCheckOptions
+                {
+                    Predicate = (_) => false
+                });
             });
         }
     }
