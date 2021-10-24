@@ -36,48 +36,61 @@ http:/localhost:8080/status/live
 
 ##### example response
 
+```json
     [
         {
             "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "staff": bool,
+            "staff": false,
             "name": "string",
             "balance": 0.0
-        }, ....
+        },
     ]
-
+```
+```md
+"staff" = true: staff user / false: common user
+```
 ### get a user by id
 
     [GET] endpoint: users/{id}
 
 ##### example response
-
+```json
     {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "staff": bool,
+      "staff": false,
       "name": "string",
       "balance": 0.0
     }
-
+```
+```md
+"staff" = true: staff user / false: common user
+```
 ### create a user
 
      [POST] endpoint: users/
 
 ##### post model
-
+```json
     {
-      "staff": bool, // false = common user | true = bank staff
+      "staff": false,
       "name": "string",
-      "cpf": "string", // format xxx.xxx.xxx-xx
-      "email": "string", // format xxx@xxx.xxx
+      "cpf": "string",
+      "email": "string",
       "password": "string"
     }
+```
+```md
+"staff" = true: staff user / false: common user
+"cpf" = string pattern: 999.999.999-99 OR 99999999999
+"email" = string pattern: aaa@aaa.aaa
+```
 
 ### see all transactions
 
       [GET] endpoint: transactions/
 
 ##### example response
-
+```json
       [
         {
           "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -85,9 +98,9 @@ http:/localhost:8080/status/live
           "receiver": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
           "createdAt": "2021-10-23T01:54:07.493Z",
           "amount": 0.0
-        }, ...
+        },
       ]
-
+```
 
 ### get transaction by id
 
@@ -95,7 +108,7 @@ http:/localhost:8080/status/live
 
 
 ##### example response
-
+```json
      [
         {
           "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -105,18 +118,24 @@ http:/localhost:8080/status/live
           "amount": 0.0
         }
     ]
-
+```
 ### create transaction
 
      [POST] endpoint: transactions/create
 
 ##### post model
-
+```json
     {
-      "sender": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Guid
-      "receiver": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Guid
-      "amount": 0.0 // double
+      "sender": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "receiver": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "amount": 0.0
     }
+```
+```md
+"sender" = Guid of the sender
+"receiver" = Guid of the receiver
+"amount" = amount of money (in double)
+```
 
 ### undo transaction
 
