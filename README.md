@@ -6,29 +6,30 @@ This is a project made for a test related to WebAPIs.
 ![](APIModel.png)
 
 
-# docker instructions
-# 1 - run this commandline: 
 
+
+# Docker Instructions
+- install [docker](https://www.docker.com/)
+- run the following command line:
 ```
 docker network create bankapi-fobenga && docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=fobenga123 --network=bankapi-fobenga mongo && docker run -it --rm -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=fobenga123 --network=bankapi-fobenga fobenga/bank:v1
 ```
+- do HTTP requests at: ```http://localhost:8080/{endpoint}```
 
-# 2 - requests at: 
-```http://localhost:8080/{endpoint}```
+# Local Build Instructions
+ - install [.NET Core 5 Runtime and SDK](https://dotnet.microsoft.com/download)
+ - install [mongodb](https://www.mongodb.com/)
+ - install [visual studio code](https://code.visualstudio.com/) (.vscode file already configured to build from TEST and DEV envs)
+ - install the [mongodb vscode extension](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode)
+ - **Ctrl+Shift+B** in VS Code to build the project and install Nuget packages.
+ - if something else is needed, run ```dotnet restore``` in the root directory command line
+ - **F5** to run in Debug mode.
 
-# healthcheck endpoints:
+# Healthcheck Endpoints:
+- Database Integrity (check if the HTTP requests are available): ```http://localhost:8080/status/ready```
+- Server Integrity (check if the server is online): ```http://localhost:8080/status/live```
 
-##### database integrity / requests available
-```
-http:/localhost:8080/status/ready 
-```
-
-##### server integrity / connected 
-```
-http:/localhost:8080/status/live
-```
-
-# usage
+# HTTP Endpoints:
 
 ### get all users
 
