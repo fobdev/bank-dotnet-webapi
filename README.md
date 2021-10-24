@@ -6,17 +6,27 @@ This is a project made for a test related to WebAPIs.
 ![](APIModel.png)
 
 
-## docker instructions
+# docker instructions
 # 1 - run this commandline: 
 
 ```
 docker network create bankapi-fobenga && docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=fobenga123 --network=bankapi-fobenga mongo && docker run -it --rm -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=fobenga123 --network=bankapi-fobenga fobenga/bank:v1
 ```
 
-### 2 - requests at: 
+# 2 - requests at: 
 ```http://localhost:8080/{endpoint}```
-### all endpoints listed below:
 
+# healthcheck endpoints:
+
+##### database integrity / requests available
+```
+http:/localhost:8080/status/ready 
+```
+
+##### server integrity / connected 
+```
+http:/localhost:8080/status/live
+```
 
 # usage
 
