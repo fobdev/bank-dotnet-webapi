@@ -5,6 +5,17 @@ This is a project made for a test related to WebAPIs.
 ## Main Architecture (ASP.NET MVC WebAPI)
 ![](APIModel.png)
 
+
+# docker instructions
+### 1 - run this commandline: 
+
+```docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=fobenga123 --network=bankapi mongo && docker run -it --rm -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=fobenga123 --network=bankapi fobenga/bank:v1```
+
+### 2 - receive requests at: 
+```http://localhost:8080/{endpoint}```
+### all endpoints listed below:
+
+
 # usage
 
 ### get all users
