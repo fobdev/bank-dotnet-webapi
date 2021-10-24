@@ -1,14 +1,11 @@
 using System;
 using Bank.Api.Controllers;
-using Bank.Api.Dtos;
 using Bank.Api.Models;
 using Bank.Api.Repositories;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
-using Bank.Api;
-using System.Linq;
 
 namespace Bank.UnitTests
 {
@@ -50,8 +47,8 @@ namespace Bank.UnitTests
             var result = controller.GetUserById(Guid.NewGuid());
 
             // Assert
-            result.Value.Should().BeEquivalentTo(expectedItem.AsUserDto(),
-            options => options.ComparingByMembers<UserDto>());
+            result.Value.Should().BeEquivalentTo(expectedItem,
+            options => options.ComparingByMembers<User>().ExcludingMissingMembers());
         }
 
         [Fact]
@@ -69,8 +66,8 @@ namespace Bank.UnitTests
             var result = controller.GetUsers();
 
             // Assert
-            result.Should().BeEquivalentTo(expectedUsers.Select(users => users.AsUserDto()),
-            options => options.ComparingByMembers<UserDto>());
+            result.Should().BeEquivalentTo(expectedUsers,
+            options => options.ComparingByMembers<User>().ExcludingMissingMembers());
         }
 
         private User CreateRandomUser()
