@@ -41,12 +41,16 @@ namespace Bank.Api.Repositories
             var userById = usersCollection.Find(filter).SingleOrDefault();
             return userById.staff;
         }
-        public void SetUserBalance(User user, double newBalance)
+        public void SetUserBalance(Guid user, double transactionAmount, bool positive)
         {
-            var filter = Builders<User>.Filter.Eq(user => user.id, user.id);
+            var filter = Builders<User>.Filter.Eq(user => user.id, user);
             var userById = usersCollection.Find(filter).SingleOrDefault();
-            var update = Builders<User>.Update.Set("balance", newBalance);
-            usersCollection.UpdateOne(filter, update);
+
+            UpdateDefinition<User> newBalance;
+            if (positive) newBalance = Builders<User>.Update.Set("balance", userById.balance + transactionAmount);
+            else newBalance = Builders<User>.Update.Set("balance", userById.balance - transactionAmount);
+
+            usersCollection.UpdateOne(filter, newBalance);
         }
 
         public bool ExistsEmail(string email)
