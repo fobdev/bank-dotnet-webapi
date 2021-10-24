@@ -42,7 +42,7 @@ docker network create bankapi-fobenga ; docker run -d --rm --name mongo -p 27017
 
 ## [GET] Get all users
 
-    [GET] endpoint: users/
+    [GET] endpoint: http://localhost:8080/users/
 
 Example response:
 
@@ -61,7 +61,7 @@ Example response:
 ```
 ## [GET] Get user by Id
 
-    [GET] endpoint: users/{id}
+    [GET] endpoint: http://localhost:8080/users/{id}
 
 Example response:
 ```json
@@ -77,7 +77,7 @@ Example response:
 ```
 ## [POST] Create User
 
-     [POST] endpoint: users/
+     [POST] endpoint: http://localhost:8080/users/
 
 Post model:
 ```json
@@ -97,7 +97,7 @@ Post model:
 
 ## [GET] See All Transactions
 
-      [GET] endpoint: transactions/
+      [GET] endpoint: http://localhost:8080/transactions/
 
 Example response:
 ```json
@@ -114,7 +114,7 @@ Example response:
 
 ## [GET] Get Transaction By Id
 
-      [GET] endpoint: transactions/{id}
+      [GET] endpoint: http://localhost:8080/transactions/{id}
 
 
 Example response:
@@ -131,7 +131,7 @@ Example response:
 ```
 ## [POST] Create Transaction
 
-     [POST] endpoint: transactions/create
+     [POST] endpoint: http://localhost:8080/transactions/create
 
 Post model:
 ```json
@@ -149,6 +149,6 @@ Post model:
 
 ## [POST] Undo Transaction
 
-    [POST] endpoint: transactions/undotransaction/{id}
+    [POST] endpoint: http://localhost:8080/transactions/undotransaction/{id}
 
 No response.
