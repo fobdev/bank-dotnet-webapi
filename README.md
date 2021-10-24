@@ -31,7 +31,7 @@ docker network create bankapi-fobenga && docker run -d --rm --name mongo -p 2701
 
 # HTTP Endpoints:
 
-## Get all users
+## [GET] Get all users
 
     [GET] endpoint: users/
 
@@ -50,7 +50,7 @@ Example response:
 ```md
 "staff" = true: staff user / false: common user
 ```
-## Get user by Id
+## [GET] Get user by Id
 
     [GET] endpoint: users/{id}
 
@@ -66,7 +66,7 @@ Example response:
 ```md
 "staff" = true: staff user / false: common user
 ```
-## Create User
+## [POST] Create User
 
      [POST] endpoint: users/
 
@@ -86,7 +86,7 @@ Post model:
 "email" = string pattern: aaa@aaa.aaa
 ```
 
-## See All Transactions
+## [GET] See All Transactions
 
       [GET] endpoint: transactions/
 
@@ -103,7 +103,7 @@ Example response:
       ]
 ```
 
-## Get Transaction By Id
+## [GET] Get Transaction By Id
 
       [GET] endpoint: transactions/{id}
 
@@ -120,7 +120,7 @@ Example response:
    }
 ]
 ```
-## Create Transaction
+## [POST] Create Transaction
 
      [POST] endpoint: transactions/create
 
@@ -138,7 +138,7 @@ Post model:
 "amount" = amount of money (in double)
 ```
 
-## Undo Transaction
+## [POST] Undo Transaction
 
     [POST] endpoint: transactions/undotransaction/{id}
 
