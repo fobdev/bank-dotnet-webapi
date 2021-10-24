@@ -71,24 +71,28 @@ namespace Banking.UnitTests
             options => options.ComparingByMembers<Transaction>().ExcludingMissingMembers());
         }
 
+        [Fact]
         public void CreateTransaction_WithTransactionToCreate_ShouldReturnCreatedTransaction()
         {
             // Arrange
             var transactionToCreate = new TransactionCreateDto()
             {
-                amount = randomNumber.NextDouble(),
-                receiver = Guid.NewGuid(),
+                amount = randomNumber.Next(),
                 sender = Guid.NewGuid(),
+                receiver = Guid.NewGuid(),
             };
-
             var controller = new TransactionController(transactionRepositoryStub.Object, userRepositoryStub.Object);
 
             // Act
             var result = controller.CreateTransaction(transactionToCreate);
 
             // Assert
-
-
+            var createdTransaction = (result.Result as CreatedAtActionResult).Value as TransactionDto;
+            createdTransaction.id.Should().NotBeEmpty();
+            transactionToCreate.Should().BeEquivalentTo(
+                createdTransaction,
+                options => options.ComparingByMembers<TransactionDto>().ExcludingMissingMembers()
+            );
         }
 
         private Transaction CreateRandomTransaction()
