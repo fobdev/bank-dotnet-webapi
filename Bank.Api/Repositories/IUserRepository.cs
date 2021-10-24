@@ -11,7 +11,7 @@ namespace Bank.Api.Repositories
         void CreateUser(User user);
         double GetUserBalance(Guid id);
         bool GetUserType(Guid id);
-        void SetUserBalance(User user, double newBalance);
+        void SetUserBalance(Guid user, double transactionAmount, bool adding);
         bool ExistsEmail(string email);
         bool ExistsCPF(string cpf);
     }
