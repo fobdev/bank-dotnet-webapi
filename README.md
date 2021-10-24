@@ -25,8 +25,8 @@ docker stop mongo ; docker network rm bankapi-fobenga
 # Local Build Instructions
  - install [.NET Core 5 Runtime and SDK](https://dotnet.microsoft.com/download)
  - install [mongodb](https://www.mongodb.com/)
- - install [visual studio code](https://code.visualstudio.com/) (.vscode file already configured to build from TEST and DEV envs)
- - install the [mongodb vscode extension](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode)
+ - install [Visual Studio Code](https://code.visualstudio.com/) (.vscode file already configured to build from TEST and DEV envs)
+ - install the [MongoDB VS Code Extension](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode)
  - **Ctrl+Shift+B** in VS Code to build the project and install Nuget packages.
  - if something else is needed, run ```dotnet restore``` in the root directory command line
  - **F5** to run in Debug mode.
