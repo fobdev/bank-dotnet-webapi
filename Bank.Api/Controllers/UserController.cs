@@ -43,13 +43,13 @@ namespace Bank.Api.Controllers
         public ActionResult<UserDto> CreateUser(UserCreateDto userDto)
         {
             // password hashing
-            byte[] specialsugar = new byte[128 / 8];
+            byte[] salt = new byte[128 / 8];
             using (var rngCsp = new RNGCryptoServiceProvider())
-                rngCsp.GetNonZeroBytes(specialsugar);
+                rngCsp.GetNonZeroBytes(salt);
 
             string hashedpwd = Convert.ToBase64String(KeyDerivation.Pbkdf2(
             password: userDto.password,
-            salt: specialsugar,
+            salt: salt,
             prf: KeyDerivationPrf.HMACSHA256,
             iterationCount: 99999,
             numBytesRequested: 256 / 8));
