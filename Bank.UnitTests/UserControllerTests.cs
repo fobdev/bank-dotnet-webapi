@@ -72,9 +72,11 @@ namespace Bank.UnitTests
         }
 
         [Fact]
-        public void CreateUser_WithUserToCreate_ShouldReturnCreatedUser()
+        public void CreateUser_WithInvalidUserToCreate_ShouldReturnBadRequest()
         {
             // Arrange
+            var cpfregex = @"/^\d{3}\.\d{3}\.\d{3}\-\d{2}$|\d{11}/";
+            var emailregex = @"/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;";
             var userToCreate = new UserCreateDto()
             {
                 name = Guid.NewGuid().ToString(),
@@ -90,10 +92,34 @@ namespace Bank.UnitTests
             var result = controller.CreateUser(userToCreate);
 
             // Assert
-            var createdUser = (result.Result as CreatedAtActionResult).Value as UserDto;
-            createdUser.id.Should().NotBeEmpty();
+            Assert.DoesNotMatch(cpfregex, userToCreate.cpf);
+            Assert.DoesNotMatch(emailregex, userToCreate.email);
+            result.Result.Should().BeOfType<BadRequestObjectResult>();
+        }
+
+        [Fact]
+        public void CreateUser_WithValidUserToCreate_ShouldReturnCreatedUser()
+        {
+            // Arrange
+            var userToCreate = new UserCreateDto()
+            {
+                name = Guid.NewGuid().ToString(),
+                cpf = Guid.NewGuid().ToString(),
+                email = "email@email.com",
+                password = Guid.NewGuid().ToString(),
+                staff = false,
+            };
+
+            var controller = new UserController(userRepositoryMock.Object);
+
+            // Act
+            var result = controller.CreateUser(userToCreate);
+
+            // Assert
+            var resultAsDto = (result.Result as CreatedAtActionResult).Value as UserDto;
+            resultAsDto.id.Should().NotBeEmpty();
             userToCreate.Should().BeEquivalentTo(
-                createdUser,
+                resultAsDto,
                 options => options.ComparingByMembers<UserDto>().ExcludingMissingMembers()
             );
         }
