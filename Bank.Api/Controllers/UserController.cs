@@ -7,6 +7,7 @@ using Bank.Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Net.Mail;
 
 namespace Bank.Api.Controllers
 {
@@ -53,9 +54,16 @@ namespace Bank.Api.Controllers
             iterationCount: 99999,
             numBytesRequested: 256 / 8));
 
-            // check conflicts
+            // check conflicts and bad requests
             if (_user_repository.ExistsEmail(userDto.email) || _user_repository.ExistsCPF(userDto.cpf))
                 return Conflict("The Email or CPF already exists in the database.");
+
+            if (!MailAddress.TryCreate(userDto.email, out MailAddress mailValidation))
+                return BadRequest($"{userDto.email} is invalid, please use this format: xxx@xxx.xxx");
+
+            // TODO Verification for valid CPF format
+
+            // TODO Send confirmation mail to validated Email
 
             // user creation
             User user = new()
