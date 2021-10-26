@@ -21,6 +21,7 @@ namespace Bank.Api.Controllers
             this._user_repository = user_repository;
         }
 
+        // [GET] endpoint: users/
         [HttpGet]
         public IEnumerable<UserDto> GetUsers()
         {
@@ -39,6 +40,8 @@ namespace Bank.Api.Controllers
 
             return user.AsUserDto();
         }
+
+        // [POST] endpoint: users/
         [HttpPost]
         public ActionResult<UserDto> CreateUser(UserCreateDto userDto)
         {
