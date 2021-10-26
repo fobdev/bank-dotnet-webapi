@@ -53,9 +53,9 @@ namespace Bank.Api.Repositories
         {
             return _user_repository.GetUserById(id).staff;
         }
-        public bool CheckTransactionSenderBalance(Guid senderId, double transactionAmount)
+        public bool CheckTransactionSenderBalance(TransactionCreateDto transaction)
         {
-            return _user_repository.GetUserById(senderId).balance < transactionAmount;
+            return _user_repository.GetUserById(transaction.sender).balance < transaction.amount;
         }
     }
 }

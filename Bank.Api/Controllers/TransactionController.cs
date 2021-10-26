@@ -23,8 +23,7 @@ namespace Bank.Api.Controllers
         [HttpGet]
         public IEnumerable<TransactionDto> GetAllTransactions()
         {
-            var transactions = _transactions_repository.GetTransactions().Select(item => item.AsTransactionDto());
-            return transactions;
+            return _transactions_repository.GetTransactions().Select(item => item.AsTransactionDto());
         }
 
         // [GET] endpoint: transactions/{id}
@@ -48,7 +47,7 @@ namespace Bank.Api.Controllers
                 return BadRequest("Please input a valid transaction number.");
             if (_transactions_repository.CheckUserIsStaff(transactionDto.sender))
                 return BadRequest("Staff members can only receive money.");
-            if (_transactions_repository.CheckTransactionSenderBalance(transactionDto.sender, transactionDto.amount))
+            if (_transactions_repository.CheckTransactionSenderBalance(transactionDto))
                 return BadRequest("The transaction value must be smaller or equal to the user balance.");
 
             Transaction transaction = new()
