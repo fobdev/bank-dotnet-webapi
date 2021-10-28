@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/pedro/Documents/Projects/Bank/build.proj": {}
+    "C:\\Users\\pedro\\Documents\\Projects\\bank-dotnet-webapi\\build.proj": {}
   },
   "projects": {
-    "/home/pedro/Documents/Projects/Bank/build.proj": {
+    "C:\\Users\\pedro\\Documents\\Projects\\bank-dotnet-webapi\\build.proj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/pedro/Documents/Projects/Bank/build.proj",
+        "projectUniqueName": "C:\\Users\\pedro\\Documents\\Projects\\bank-dotnet-webapi\\build.proj",
         "projectName": "build",
-        "projectPath": "/home/pedro/Documents/Projects/Bank/build.proj",
-        "packagesPath": "/home/pedro/.nuget/packages/",
-        "outputPath": "/home/pedro/Documents/Projects/Bank/obj/",
+        "projectPath": "C:\\Users\\pedro\\Documents\\Projects\\bank-dotnet-webapi\\build.proj",
+        "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pedro\\Documents\\Projects\\bank-dotnet-webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/pedro/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net45"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -36,11 +38,11 @@
             "Microsoft.NETFramework.ReferenceAssemblies": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[1.0.0, )",
+              "version": "[1.0.2, )",
               "autoReferenced": true
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.205/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.2.21505.57\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -2,13 +2,13 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.5": {
-      "Microsoft.NETFramework.ReferenceAssemblies/1.0.0": {
+      "Microsoft.NETFramework.ReferenceAssemblies/1.0.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETFramework.ReferenceAssemblies.net45": "1.0.0"
+          "Microsoft.NETFramework.ReferenceAssemblies.net45": "1.0.2"
         }
       },
-      "Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.0": {
+      "Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.2": {
         "type": "package",
         "build": {
           "build/Microsoft.NETFramework.ReferenceAssemblies.net45.targets": {}
@@ -17,21 +17,21 @@
     }
   },
   "libraries": {
-    "Microsoft.NETFramework.ReferenceAssemblies/1.0.0": {
-      "sha512": "7D2TMufjGiowmt0E941kVoTIS+GTNzaPopuzM1/1LSaJAdJdBrVP0SkZW7AgDd0a2U1DjsIeaKG1wxGVBNLDMw==",
+    "Microsoft.NETFramework.ReferenceAssemblies/1.0.2": {
+      "sha512": "5/cSEVld+px/CuRrbohO/djfg6++eR6zGpy88MgqloXvkj//WXWpFZyu/OpkXPN0u5m+dN/EVwLNYFUxD4h2+A==",
       "type": "package",
-      "path": "microsoft.netframework.referenceassemblies/1.0.0",
+      "path": "microsoft.netframework.referenceassemblies/1.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+        "microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
         "microsoft.netframework.referenceassemblies.nuspec"
       ]
     },
-    "Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.0": {
-      "sha512": "f7XMQsZFaoc3w8Vg3VQ3FHuU2C9vf0Ng5EAV4gzdNWDerPM/OmrzccLj15eI1wCLLXj4jk8+lKsbonzJeyXgQQ==",
+    "Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.2": {
+      "sha512": "Nm14pRmqB+4u2JEMdtngnbDcJidTmswMxOJ992TpTwiwcUTERxLlHwwSh0HiUoRjS0TO0sozsiB0h6FHjCUdEA==",
       "type": "package",
-      "path": "microsoft.netframework.referenceassemblies.net45/1.0.0",
+      "path": "microsoft.netframework.referenceassemblies.net45/1.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -342,35 +342,37 @@
         "build/.NETFramework/v4.5/sysglobl.dll",
         "build/.NETFramework/v4.5/sysglobl.xml",
         "build/Microsoft.NETFramework.ReferenceAssemblies.net45.targets",
-        "microsoft.netframework.referenceassemblies.net45.1.0.0.nupkg.sha512",
+        "microsoft.netframework.referenceassemblies.net45.1.0.2.nupkg.sha512",
         "microsoft.netframework.referenceassemblies.net45.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.5": [
-      "Microsoft.NETFramework.ReferenceAssemblies >= 1.0.0"
+      "Microsoft.NETFramework.ReferenceAssemblies >= 1.0.2"
     ]
   },
   "packageFolders": {
-    "/home/pedro/.nuget/packages/": {}
+    "C:\\Users\\pedro\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/pedro/Documents/Projects/Bank/build.proj",
+      "projectUniqueName": "C:\\Users\\pedro\\Documents\\Projects\\bank-dotnet-webapi\\build.proj",
       "projectName": "build",
-      "projectPath": "/home/pedro/Documents/Projects/Bank/build.proj",
-      "packagesPath": "/home/pedro/.nuget/packages/",
-      "outputPath": "/home/pedro/Documents/Projects/Bank/obj/",
+      "projectPath": "C:\\Users\\pedro\\Documents\\Projects\\bank-dotnet-webapi\\build.proj",
+      "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pedro\\Documents\\Projects\\bank-dotnet-webapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/pedro/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net45"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -387,11 +389,11 @@
           "Microsoft.NETFramework.ReferenceAssemblies": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[1.0.0, )",
+            "version": "[1.0.2, )",
             "autoReferenced": true
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.205/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.2.21505.57\\RuntimeIdentifierGraph.json"
       }
     }
   }

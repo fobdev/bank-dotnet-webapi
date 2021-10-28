@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "0yC2kGe6gaEiepaR9uqnjLre79z26tXrc048Tyoh1NBdRCevse8CQHpJsT0RGWoiqvfESw2UhG/vtSUX09SQTg==",
+  "dgSpecHash": "7M/EnGReS27SC7l+vXG0yR2oDLINyPddQEJj+3+azFhHfIfxqJj1+0KEYtVWcQA8+Fi2Mn2hCwTLEPdnEHVnAw==",
   "success": true,
-  "projectFilePath": "/home/pedro/Documents/Projects/Bank/build.proj",
+  "projectFilePath": "C:\\Users\\pedro\\Documents\\Projects\\bank-dotnet-webapi\\build.proj",
   "expectedPackageFiles": [
-    "/home/pedro/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.0/microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
-    "/home/pedro/.nuget/packages/microsoft.netframework.referenceassemblies.net45/1.0.0/microsoft.netframework.referenceassemblies.net45.1.0.0.nupkg.sha512"
+    "C:\\Users\\pedro\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\pedro\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net45\\1.0.2\\microsoft.netframework.referenceassemblies.net45.1.0.2.nupkg.sha512"
   ],
   "logs": []
 }
