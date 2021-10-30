@@ -47,7 +47,7 @@ dotnet user-secrets set "MongoDbSettings:Password" "fobenga123"
 -   run [mongodb](https://hub.docker.com/_/mongo) in Docker, using the command line below:
 
 ```console
-docker network create bankapi-fobenga ; docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=fobenga123 --network=bankapi-fobenga mongo
+docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=fobenga123 mongo
 ```
 
 -   **F5** to run in Debug mode.
