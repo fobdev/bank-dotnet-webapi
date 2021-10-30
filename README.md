@@ -9,19 +9,22 @@ This is a project made for a test related to WebAPIs.
 
 
 # Docker Instructions
+Link to the [Public repository of the container](https://hub.docker.com/r/fobenga/bank)
 - install [docker](https://www.docker.com/)
 - run the following command line (**use PowerShell** if using Windows):
 ```console
-docker network create bankapi-fobenga ; docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=fobenga123 --network=bankapi-fobenga mongo ; docker run -it --rm --name bank -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=fobenga123 --network=bankapi-fobenga fobenga/bank:v1
+docker network create bankapi-fobenga ; docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=fobenga123 --network=bankapi-fobenga mongo ; docker run -it --rm --name bank -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=fobenga123 --network=bankapi-fobenga fobenga/bank:v2
 ```
 - do HTTP requests at: ```http://localhost:8080/{endpoint}```
+
+## Swagger Docker Integration
+- Swagger can be accessed from ```http://localhost:8080/swagger/```
+
+## Removing dependencies
 - when finished, you can remove the docker network by running the following command line (**use PowerShell** if using Windows):
 ```console
 docker stop mongo ; docker network rm bankapi-fobenga
 ```
-- Link to the [Public repository of the container](https://hub.docker.com/r/fobenga/bank)
-
-
 # Local Build Instructions
  - install [.NET Core 5 Runtime and SDK](https://dotnet.microsoft.com/download).
  - install [Visual Studio Code](https://code.visualstudio.com/) (.vscode file already configured to build from TEST and DEV envs).
@@ -33,7 +36,9 @@ docker stop mongo ; docker network rm bankapi-fobenga
 docker network create bankapi-fobenga ; docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=fobenga123 --network=bankapi-fobenga mongo
 ```
  - **F5** to run in Debug mode.
- 
+## Swagger Local Integration
+- Swagger can be accessed from ```https://localhost:5001/swagger/``` 
+
 # Healthcheck Endpoints:
 - Database Integrity (check if the HTTP requests are available): ```http://localhost:8080/status/ready```
 - Server Integrity (check if the server is online): ```http://localhost:8080/status/live```
