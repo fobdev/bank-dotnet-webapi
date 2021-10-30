@@ -64,7 +64,13 @@ namespace Bank.Api.Controllers
             if (!MailAddress.TryCreate(userDto.email, out MailAddress mailValidation))
                 return BadRequest($"{userDto.email} is invalid, please use this format: xxx@xxx.xxx");
 
-            // TODO Verification for valid CPF format
+            // Verification of valid CPF input
+            if (userDto.cpf.Length != 11)
+                return BadRequest("The CPF field must have exacly 11 characters. Format: 00000000000");
+
+            foreach (char c in userDto.cpf)
+                if (c < '0' || c > '9')
+                    return BadRequest("The CPF must only contain numbers. Format: 00000000000");
 
             // TODO Send confirmation mail to validated Email
 

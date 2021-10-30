@@ -104,7 +104,7 @@ namespace Bank.UnitTests
             var userToCreate = new UserCreateDto()
             {
                 name = Guid.NewGuid().ToString(),
-                cpf = Guid.NewGuid().ToString(),
+                cpf = "00000000000",
                 email = "email@email.com",
                 password = Guid.NewGuid().ToString(),
                 staff = false,
