@@ -72,14 +72,13 @@ namespace Bank.Api
         {
             if (env.IsDevelopment())
             {
+                app.UseHttpsRedirection();
                 app.UseDeveloperExceptionPage();
             }
             
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bank v1"));
 
             app.UseSwagger();
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
