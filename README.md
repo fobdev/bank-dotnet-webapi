@@ -38,6 +38,12 @@ docker stop mongo ; docker network rm bankapi-fobenga
 -   install the [MongoDB VS Code Extension](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode).
 -   run `dotnet restore`via the command line, to restore all NuGet Packages
 -   **Ctrl+Shift+B** in VS Code to build the project.
+-   add the MongoDB Password to the Dotnet Secrets with the following command:
+
+```console
+dotnet user-secrets set "MongoDbSettings:Password" "fobenga123"
+```
+
 -   run [mongodb](https://hub.docker.com/_/mongo) in Docker, using the command line below:
 
 ```console
