@@ -25,7 +25,7 @@ namespace Bank.Api.Repositories
             return bankCollection.Find(filter).SingleOrDefault();
         }
 
-        public void MakeLoan(Guid sending, Guid receiving, double amount)
+        public void MakeLoan(LoanCreateDto loanCreateDto)
         {
             throw new NotImplementedException();
         }

@@ -5,8 +5,7 @@ namespace Bank.Api.Repositories
 {
     public interface IBankRepository
     {
-        void MakeLoan(Guid sending, Guid receiving, double amount);
-        PhysicalBank GetBank(Guid id);
+        void MakeLoan(LoanCreateDto loanCreateDto);
         void CreateBank(PhysicalBank bank);
 
     }
