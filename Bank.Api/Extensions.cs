@@ -31,6 +31,7 @@ namespace Bank.Api
         {
             return new PhysicalBankDto
             {
+                id = bank.id,
                 balance = bank.balance
             };
         }
