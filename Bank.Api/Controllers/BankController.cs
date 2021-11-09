@@ -18,9 +18,9 @@ namespace Bank.Api.Controllers
 
         // [GET] endpoint: users/{id}
         [HttpGet("{id:guid}")]
-        public ActionResult<PhysicalBankDto> GetBank(Guid id)
+        public ActionResult<PhysicalBankDto> GetBankById(Guid id)
         {
-            var bank = _bank_repository.GetBank(id);
+            var bank = _bank_repository.GetBankById(id);
             if (bank is null) return NotFound();
 
             return bank.AsBankDto();
@@ -37,7 +37,7 @@ namespace Bank.Api.Controllers
 
             _bank_repository.CreateBank(bank);
 
-            return CreatedAtAction(nameof(GetBank), new { id = bank.id }, bank.AsBankDto());
+            return CreatedAtAction(nameof(GetBankById), new { id = bank.id }, bank.AsBankDto());
         }
 
         [HttpPost("loan")]
