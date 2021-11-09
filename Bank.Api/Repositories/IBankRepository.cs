@@ -7,6 +7,6 @@ namespace Bank.Api.Repositories
     {
         void MakeLoan(LoanCreateDto loanCreateDto);
         void CreateBank(PhysicalBank bank);
-
+        PhysicalBank GetBankById(Guid id);
     }
 }

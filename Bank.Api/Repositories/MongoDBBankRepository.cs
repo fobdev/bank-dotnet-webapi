@@ -18,8 +18,7 @@ namespace Bank.Api.Repositories
         {
             bankCollection.InsertOne(bank);
         }
-
-        public PhysicalBank GetBank(Guid id)
+        public PhysicalBank GetBankById(Guid id)
         {
             var filter = Builders<PhysicalBank>.Filter.Eq(bank => bank.id, id);
             return bankCollection.Find(filter).SingleOrDefault();
