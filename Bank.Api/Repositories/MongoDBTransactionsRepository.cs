@@ -51,7 +51,7 @@ namespace Bank.Api.Repositories
         }
         public bool CheckUserIsStaff(Guid id)
         {
-            return _user_repository.GetUserById(id).staff;
+            return _user_repository.GetUserById(id).premium;
         }
         public bool CheckTransactionSenderBalance(TransactionCreateDto transaction)
         {

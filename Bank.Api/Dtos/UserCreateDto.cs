@@ -5,7 +5,7 @@ namespace Bank.Api.Models
     public record UserCreateDto
     {
         [Required]
-        public bool staff { get; set; } // sales or common
+        public bool premium { get; set; } // common or premium
         [Required]
         public string name { get; init; }
         [Required]

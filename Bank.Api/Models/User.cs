@@ -5,7 +5,7 @@ namespace Bank.Api.Models
     public record User
     {
         public Guid id { get; init; }
-        public bool staff { get; init; }
+        public bool premium { get; init; }
         public string name { get; init; }
         public string cpf { get; init; }
         public string email { get; init; }

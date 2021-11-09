@@ -82,7 +82,7 @@ namespace Bank.Api.Controllers
                 email = userDto.email,
                 cpf = userDto.cpf,
                 password = hashedpwd,
-                staff = userDto.staff,
+                premium = userDto.premium,
                 balance = 1000,
             };
 

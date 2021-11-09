@@ -11,7 +11,7 @@ namespace Bank.Api
             {
                 id = user.id,
                 name = user.name,
-                staff = user.staff,
+                premium = user.premium,
                 balance = user.balance
             };
         }

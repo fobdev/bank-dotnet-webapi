@@ -83,7 +83,7 @@ namespace Bank.UnitTests
                 cpf = Guid.NewGuid().ToString(),
                 email = Guid.NewGuid().ToString(),
                 password = Guid.NewGuid().ToString(),
-                staff = false,
+                premium = false,
             };
 
             var controller = new UserController(userRepositoryMock.Object);
@@ -107,7 +107,7 @@ namespace Bank.UnitTests
                 cpf = "00000000000",
                 email = "email@email.com",
                 password = Guid.NewGuid().ToString(),
-                staff = false,
+                premium = false,
             };
 
             var controller = new UserController(userRepositoryMock.Object);
@@ -133,7 +133,7 @@ namespace Bank.UnitTests
                 email = Guid.NewGuid().ToString(),
                 password = Guid.NewGuid().ToString(),
                 balance = 9500,
-                staff = true,
+                premium = true,
             };
         }
     }

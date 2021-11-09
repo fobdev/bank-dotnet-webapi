@@ -39,7 +39,7 @@ namespace Bank.Api.Repositories
         {
             var filter = Builders<User>.Filter.Eq(user => user.id, id);
             var userById = usersCollection.Find(filter).SingleOrDefault();
-            return userById.staff;
+            return userById.premium;
         }
         public void SetUserBalance(Guid user, double transactionAmount, bool positive)
         {
