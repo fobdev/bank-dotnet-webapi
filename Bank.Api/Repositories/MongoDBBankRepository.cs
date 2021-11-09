@@ -7,7 +7,7 @@ namespace Bank.Api.Repositories
     class MongoDBBankRepository : IBankRepository
     {
         private const string databaseName = "bank";
-        private const string collectionName = "bank";
+        private const string collectionName = "physicalbank";
         private readonly IMongoCollection<PhysicalBank> bankCollection;
         public MongoDBBankRepository(IMongoClient mongoClient)
         {
