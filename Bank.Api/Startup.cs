@@ -60,6 +60,7 @@ namespace Bank.Api
             // Dependency Injection
             services.AddSingleton<IUserRepository, MongoDBUsersRepository>();
             services.AddSingleton<ITransactionRepository, MongoDBTransactionsRepository>();
+            services.AddSingleton<IBankRepository, MongoDBBankRepository>();
 
             services.AddSwaggerGen(c =>
             {
@@ -75,7 +76,7 @@ namespace Bank.Api
                 app.UseHttpsRedirection();
                 app.UseDeveloperExceptionPage();
             }
-            
+
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bank v1"));
 
             app.UseSwagger();
