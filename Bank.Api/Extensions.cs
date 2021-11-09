@@ -26,5 +26,13 @@ namespace Bank.Api
                 createdAt = transaction.createdAt
             };
         }
+
+        public static PhysicalBankDto AsBankDto(this PhysicalBank bank)
+        {
+            return new PhysicalBankDto
+            {
+                balance = bank.balance
+            };
+        }
     }
 }
