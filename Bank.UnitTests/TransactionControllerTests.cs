@@ -8,7 +8,7 @@ using Moq;
 using Xunit;
 
 
-namespace Banking.UnitTests
+namespace Bank.UnitTests
 {
     public class TransactionControllerTests
     {
